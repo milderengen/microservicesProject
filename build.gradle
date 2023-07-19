@@ -35,6 +35,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre11'
 }
 
 tasks.named('test') {
