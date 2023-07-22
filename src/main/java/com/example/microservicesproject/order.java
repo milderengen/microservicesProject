@@ -22,4 +22,5 @@ public class order {
     public void setProducts(List<LineProduct> products) {
         this.products = products;
     }
+    public void addProduct(LineProduct product){this.products.add(product);}
 }

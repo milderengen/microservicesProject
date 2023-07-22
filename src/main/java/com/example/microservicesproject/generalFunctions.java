@@ -19,13 +19,19 @@ public class generalFunctions {
                 "Vodka",
                 "AK-47"
         );
-
-
         int randomQuantity = random.nextInt();
         order order = new order();
+        for(int i = 0;i<randomQuantity;i++){
+            int randomProduct = random.nextInt();
+            int randomProductQuantity = random.nextInt();
+            product product = new product();
+            product.setName(stringList.get(randomProduct));
+            LineProduct lineProduct = new LineProduct();
+            lineProduct.setProduct(product);
+            lineProduct.setQuantity(randomProductQuantity);
+            order.addProduct(lineProduct);
+        }
 
-    }
-    public List<LineProduct> rapidFire(){
-
+        return order;
     }
 }

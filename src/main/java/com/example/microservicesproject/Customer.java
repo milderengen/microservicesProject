@@ -1,17 +1,23 @@
 package com.example.microservicesproject;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Customer {
-    int costumerID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int CustomerID;
     String name;
     String lastName;
     String email;
 
-    public int getCostumerID() {
-        return costumerID;
+    public int getCustomerID() {
+        return CustomerID;
     }
 
-    public void setCostumerID(int costumerID) {
-        this.costumerID = costumerID;
+    public void setCustomerID(int customerID) {
+        CustomerID = customerID;
     }
 
     public String getName() {

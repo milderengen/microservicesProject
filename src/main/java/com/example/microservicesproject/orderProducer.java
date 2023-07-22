@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class orderProducer {
     private final KafkaTemplate<String, order> kafkaTemplate;
+    generalFunctions generalFunctions = new generalFunctions();
 
     @Autowired
     public orderProducer(KafkaTemplate<String, order> kafkaTemplate) {
@@ -18,6 +19,8 @@ public class orderProducer {
         kafkaTemplate.send(topic, message);
     }
     public void rapidOrderSend(){
-
+        for(int i = 0;i<5;i++){
+            sendOrder("topic",generalFunctions.dummyOrder());
+        }
     }
 }
