@@ -1,6 +1,7 @@
 package com.example.microservicesproject.microservices.producers;
 
 import com.example.microservicesproject.generalFunctions;
+import com.example.microservicesproject.microservices.OrderManager;
 import com.example.microservicesproject.objects.order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -12,6 +13,8 @@ public class orderProducer {
     com.example.microservicesproject.generalFunctions generalFunctions = new generalFunctions();
     @Autowired
     private com.example.microservicesproject.orderService orderService;
+    @Autowired
+    private OrderManager orderManager;
 
     @Autowired
     public orderProducer(KafkaTemplate<String, order> kafkaTemplate) {
@@ -22,10 +25,16 @@ public class orderProducer {
         kafkaTemplate.send(topic, message);
     }
     public void rapidOrderSend(){
+        int counter = 0;
         for(int i = 0;i<5;i++){
+            if(counter>15){i=6;}
             order order = generalFunctions.dummyOrder();
-            orderService.save(order);
-            sendOrder("topic", order);
+            if(orderManager.canBeDone(order)){
+                sendOrder("topic", order);
+            }else{
+                i = i-1;
+                counter++;
+            }
         }
     }
 }

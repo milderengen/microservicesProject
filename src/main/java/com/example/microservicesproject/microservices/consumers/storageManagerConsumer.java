@@ -1,35 +1,30 @@
 package com.example.microservicesproject.microservices.consumers;
 
+import com.example.microservicesproject.SQL.productSQL;
 import com.example.microservicesproject.generalFunctions;
+import com.example.microservicesproject.microservices.storageManager;
 import com.example.microservicesproject.objects.order;
 import com.example.microservicesproject.services.orderService;
+import com.example.microservicesproject.services.productService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 
 
 public class storageManagerConsumer {
     @Autowired
-    private final generalFunctions generalFunctions;
+    private  generalFunctions generalFunctions;
     @Autowired
-    private final  orderService orderService;
+    private  orderService orderService;
     @Autowired
-    private final com.example.microservicesproject.SQL.productSQL productSQL;
-    public storageManagerConsumer(com.example.microservicesproject.SQL.productSQL productSQL, com.example.microservicesproject.generalFunctions generalFunctions, com.example.microservicesproject.services.orderService orderService) {
-        this.productSQL = productSQL;
-        this.generalFunctions = generalFunctions;
-        this.orderService = orderService;
-    }
+    private productService productService;
+    @Autowired
+    private storageManager storageManager;
 
 
     @KafkaListener(topics = "orders-topic")
     public void listen(order order) {
-        switch(order.getOrderType()){
-            case CREATE, UPDATE -> {
-                    generalFunctions.createOrUpdate(order,productSQL);
-            }
-            case DELETE -> orderService.delete(order.getOrderID());
-        }
 
 
+        storageManager.saveOrUpdate(order);
     }
 }

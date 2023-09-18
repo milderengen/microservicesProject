@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class productService {
@@ -18,6 +19,9 @@ public class productService {
 
     public List<product> findAllProducts(){
         return productSQL.findAll();
+    }
+    public Optional<product> findByProductName(String productName){
+        return productSQL.findByProductName(productName);
     }
     public product findById(int id){
         if(productSQL.findById(id).isPresent()){
