@@ -1,4 +1,4 @@
-package com.example.microservicesproject.consumers;
+package com.example.microservicesproject.microservices.consumers;
 
 import com.example.microservicesproject.objects.order;
 import org.springframework.beans.factory.annotation.Autowired;

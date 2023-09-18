@@ -16,7 +16,7 @@ public class productService {
         this.productSQL = productSQL;
     }
 
-    public List<product> findAllOrders(){
+    public List<product> findAllProducts(){
         return productSQL.findAll();
     }
     public product findById(int id){
@@ -25,7 +25,7 @@ public class productService {
         }
         return null;
     }
-    public void saveAnOrder(product product){
+    public void saveAnProduct(product product){
         productSQL.save(product);
     }
     public void delete(int id){

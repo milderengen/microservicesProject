@@ -1,4 +1,4 @@
-package com.example.microservicesproject.producers;
+package com.example.microservicesproject.microservices.producers;
 
 import com.example.microservicesproject.generalFunctions;
 import com.example.microservicesproject.objects.order;

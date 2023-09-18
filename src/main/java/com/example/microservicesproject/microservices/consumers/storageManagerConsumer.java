@@ -1,4 +1,4 @@
-package com.example.microservicesproject.consumers;
+package com.example.microservicesproject.microservices.consumers;
 
 import com.example.microservicesproject.generalFunctions;
 import com.example.microservicesproject.objects.order;
