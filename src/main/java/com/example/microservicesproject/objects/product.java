@@ -1,8 +1,18 @@
-package com.example.microservicesproject;
+package com.example.microservicesproject.objects;
 
 public class product {
     int id;
     String name;
+
+    int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public int getId() {
         return id;

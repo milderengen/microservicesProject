@@ -1,8 +1,27 @@
-package com.example.microservicesproject;
+package com.example.microservicesproject.objects;
+
+import com.example.microservicesproject.orderType;
 
 import java.util.List;
 
 public class order {
+    public com.example.microservicesproject.orderType getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(com.example.microservicesproject.orderType orderType) {
+        this.orderType = orderType;
+    }
+
+    public Customer getCostumer() {
+        return Costumer;
+    }
+
+    public void setCostumer(Customer costumer) {
+        Costumer = costumer;
+    }
+
+    orderType orderType;
     int orderID;
     List<LineProduct> products;
     Customer Costumer;

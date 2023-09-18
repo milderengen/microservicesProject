@@ -1,5 +1,6 @@
-package com.example.microservicesproject;
+package com.example.microservicesproject.objects;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

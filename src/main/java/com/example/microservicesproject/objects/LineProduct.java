@@ -1,14 +1,16 @@
-package com.example.microservicesproject;
+package com.example.microservicesproject.objects;
+
+import com.example.microservicesproject.objects.product;
 
 public class LineProduct {
     product product;
     int quantity;
 
-    public com.example.microservicesproject.product getProduct() {
+    public com.example.microservicesproject.objects.product getProduct() {
         return product;
     }
 
-    public void setProduct(com.example.microservicesproject.product product) {
+    public void setProduct(com.example.microservicesproject.objects.product product) {
         this.product = product;
     }
 

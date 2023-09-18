@@ -1,7 +1,13 @@
 package com.example.microservicesproject;
 
+import com.example.microservicesproject.SQL.productSQL;
+import com.example.microservicesproject.objects.LineProduct;
+import com.example.microservicesproject.objects.order;
+import com.example.microservicesproject.objects.product;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class generalFunctions {
@@ -33,5 +39,29 @@ public class generalFunctions {
         }
 
         return order;
+    }
+    public void createOrUpdate(order order, productSQL productSQL){
+        for(int i = 0;i<order.getProducts().size();i++){
+            Optional<product> optionalProduct = productSQL.findByProductName(order.getProducts().get(i).getProduct().getName());
+
+            if(optionalProduct.isPresent()) {
+                product product = optionalProduct.get();
+
+                // Check if enough stock is available
+                if(product.getQuantity() >= order.getProducts().get(i).getProduct().getQuantity()) {
+                    // Reduce the stock
+                    product.setQuantity(product.getQuantity() - order.getProducts().get(i).getProduct().getQuantity());
+
+                    // Update the product in the database
+                    productSQL.save(product);
+                } else {
+                    // Handle insufficient stock scenario (logging, sending a notification, etc.)
+                    System.out.println("Insufficient stock for product: " + order.getProducts().get(i).getProduct().getName());
+                }
+            } else {
+                // Handle scenario where product is not found (logging, sending a notification, etc.)
+                System.out.println("Product not found: " + order.getProducts().get(i).getProduct().getName());
+            }
+        }
     }
 }
