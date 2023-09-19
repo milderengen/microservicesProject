@@ -1,6 +1,7 @@
 package com.example.microservicesproject.microservices;
 
 import com.example.microservicesproject.objects.order;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 @Service

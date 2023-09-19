@@ -5,7 +5,6 @@ import com.example.microservicesproject.services.productService;
 import com.example.microservicesproject.generalFunctions;
 import com.example.microservicesproject.objects.order;
 import jakarta.inject.Inject;
-import jakarta.transaction.Status;
 import jakarta.ws.rs.core.Response;
 
 import java.util.LinkedList;
@@ -39,5 +38,8 @@ public class storageManager {
             }
         }
         return toOrder;
+    }
+
+    public static class ShipmentManager {
     }
 }

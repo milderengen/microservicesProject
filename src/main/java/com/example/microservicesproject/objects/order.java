@@ -41,7 +41,37 @@ public class order {
     @Column(name = "price")
     long price;
     @Column(name = "paid")
-    boolean isPaid;
+    boolean isPaid = true;
+    @Column(name = "address")
+    String Address;
+    @Column(name = "city")
+    String city;
+    @Column(name = "country")
+    String country;
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public boolean isPaid() {
         return isPaid;

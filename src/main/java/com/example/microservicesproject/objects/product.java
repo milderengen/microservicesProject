@@ -19,6 +19,16 @@ public class product {
     boolean isUpToDate;
     @Column(name = "updatedAt")
     Date updatedAt;
+    @Column(name = "price")
+    long price;
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
 
     public boolean isUpToDate() {
         return isUpToDate;
