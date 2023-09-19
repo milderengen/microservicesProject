@@ -2,7 +2,9 @@ package com.example.microservicesproject.objects;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Customer {
     @Id
@@ -16,6 +18,17 @@ public class Customer {
     boolean upToDate;
     @Column(name = "password")
     String password;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notifications = new ArrayList<>();
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 
     public String getPassword() {
         return password;
