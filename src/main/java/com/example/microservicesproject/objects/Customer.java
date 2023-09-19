@@ -21,6 +21,16 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notification> notifications = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<order> orders = new ArrayList<>();
+
+    public List<order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<order> orders) {
+        this.orders = orders;
+    }
 
     public List<Notification> getNotifications() {
         return notifications;

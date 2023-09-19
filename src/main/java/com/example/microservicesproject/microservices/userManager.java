@@ -97,5 +97,21 @@ public class userManager {
             return "redirect:index";
         }
     }
+    @RequestMapping("/profile")
+    public String showProfile(Model model, @RequestParam("id") int id){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("name", customer.getName());
+        model.addAttribute("email",customer.getEmail());
+        model.addAttribute("notifications",customer.getNotifications());
+        model.addAttribute("orders", customer.getOrders());
+        return "index";
+    }
+    @RequestMapping("/orders")
+    public String showOrders(Model model, @RequestParam("id") int id){
+        Customer customer = customerService.getCustomerById(id);
+        model.addAttribute("name", customer.getName());
+        model.addAttribute("orders", customer.getOrders());
+        return "orders";
+    }
 
 }
