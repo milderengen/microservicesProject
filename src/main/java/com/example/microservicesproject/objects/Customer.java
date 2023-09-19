@@ -14,6 +14,16 @@ public class Customer {
     String email;
     @Column(name = "upToDate")
     boolean upToDate;
+    @Column(name = "password")
+    String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public boolean isUpToDate() {
         return upToDate;

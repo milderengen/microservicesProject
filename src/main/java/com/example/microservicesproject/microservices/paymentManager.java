@@ -5,7 +5,7 @@ import com.example.microservicesproject.services.orderService;
 
 import java.util.Random;
 
-public class paymentSystem {
+public class paymentManager {
     private orderService orderService;
 
     public void paySomeoneTheirOrder(){
