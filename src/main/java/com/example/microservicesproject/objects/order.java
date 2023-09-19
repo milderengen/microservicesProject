@@ -1,35 +1,71 @@
 package com.example.microservicesproject.objects;
 
-import com.example.microservicesproject.orderType;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
 public class order {
-    public com.example.microservicesproject.orderType getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(com.example.microservicesproject.orderType orderType) {
-        this.orderType = orderType;
-    }
+//    public com.example.microservicesproject.orderType getOrderType() {
+//        return orderType;
+//    }
+//
+//    public void setOrderType(com.example.microservicesproject.orderType orderType) {
+//        this.orderType = orderType;
+//    }
 
     public Customer getCostumer() {
-        return Costumer;
+        return Customer;
     }
 
     public void setCostumer(Customer costumer) {
-        Costumer = costumer;
+        Customer = costumer;
+    }
+    /*@Column(name = "orderType")
+    orderType orderType;*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int orderID;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<LineProduct> products;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    Customer Customer;
+    @Column(name = "cancelled")
+    boolean canceled;
+    @Column(name = "updatedAt")
+    Date updatedAt;
+    @Column(name = "isUpToDate")
+    boolean isUpToDate;
+    @Column(name = "createdAt")
+    Date createdAt;
+    @Column(name = "price")
+    long price;
+    @Column(name = "paid")
+    boolean isPaid;
+
+    public boolean isPaid() {
+        return isPaid;
     }
 
-    orderType orderType;
-    int orderID;
-    List<LineProduct> products;
-    Customer Costumer;
-    boolean canceled;
-    Date updatedAt;
-    boolean isUpToDate;
-    Date createdAt;
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
+    public com.example.microservicesproject.objects.Customer getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(com.example.microservicesproject.objects.Customer customer) {
+        Customer = customer;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
 
     public Date getCreatedAt() {
         return createdAt;

@@ -1,9 +1,6 @@
 package com.example.microservicesproject.objects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -11,10 +8,30 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CustomerID;
+    @Column(name = "name")
     String name;
-    String lastName;
+    @Column(name = "email")
     String email;
+    @Column(name = "upToDate")
     boolean upToDate;
+
+    public boolean isUpToDate() {
+        return upToDate;
+    }
+
+    public void setUpToDate(boolean upToDate) {
+        this.upToDate = upToDate;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Column(name = "updatedAt")
     Date updatedAt;
 
 
@@ -32,14 +49,6 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

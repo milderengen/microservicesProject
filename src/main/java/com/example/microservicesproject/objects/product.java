@@ -1,12 +1,23 @@
 package com.example.microservicesproject.objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 
 public class product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    @Column(name = "name")
     String name;
+    @Column(name = "quantity")
     int quantity;
+    @Column(name = "isUpToDate")
     boolean isUpToDate;
+    @Column(name = "updatedAt")
     Date updatedAt;
 
     public boolean isUpToDate() {

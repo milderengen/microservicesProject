@@ -8,6 +8,7 @@ import com.example.microservicesproject.services.customerService;
 import com.example.microservicesproject.services.productService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -41,6 +42,7 @@ public class generalFunctions {
             LineProduct lineProduct = new LineProduct();
             lineProduct.setProduct(product);
             lineProduct.setQuantity(randomProductQuantity);
+            lineProduct.setOrder(order);
             order.addProduct(lineProduct);
         }
         order.setCostumer(customerService.getCustomerById(rand));
@@ -70,5 +72,33 @@ public class generalFunctions {
                 System.out.println("Product not found: " + order.getProducts().get(i).getProduct().getName());
             }
         }
+    }
+    public int checkFile(MultipartFile file){
+        final long MAX_SIZE = 1024 * 1024 * 5; // 5 MB
+        if (file.isEmpty()) {
+            return 1;
+        }
+
+        // Check the file type
+        String contentType = file.getContentType();
+        if (!isAllowedContentType(contentType)) {
+            return 2;
+        }
+
+        // Check the file size
+        long size = file.getSize();
+        if (size > MAX_SIZE) {
+            return 3;
+        }
+        return 0;
+    }
+    private boolean isAllowedContentType(String contentType) {
+        // Define allowed content types and check
+        return "image/jpeg".equals(contentType) || "image/png".equals(contentType);
+    }
+
+    public String generateSafeFileName(String originalFileName) {
+        // Generate a safe file name, could use UUIDs
+        return UUID.randomUUID().toString() + "_" + originalFileName;
     }
 }
