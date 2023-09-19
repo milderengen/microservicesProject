@@ -17,8 +17,13 @@ public class orderProducer {
     private OrderManager orderManager;
 
     @Autowired
-    public orderProducer(KafkaTemplate<String, order> kafkaTemplate) {
+    public orderProducer(KafkaTemplate<String, order> kafkaTemplate) throws InterruptedException {
         this.kafkaTemplate = kafkaTemplate;
+        do{
+            rapidOrderSend();
+            Thread.sleep(10000);
+        }while(true);
+
     }
 
     public void sendOrder(String topic, order message){

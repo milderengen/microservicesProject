@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +14,9 @@ public class Customer {
     String name;
     String lastName;
     String email;
+    boolean upToDate;
+    Date updatedAt;
+
 
     public int getCustomerID() {
         return CustomerID;

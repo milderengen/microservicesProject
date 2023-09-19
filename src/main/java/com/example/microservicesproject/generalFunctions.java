@@ -1,19 +1,24 @@
 package com.example.microservicesproject;
 
+import com.example.microservicesproject.objects.Customer;
 import com.example.microservicesproject.objects.LineProduct;
 import com.example.microservicesproject.objects.order;
 import com.example.microservicesproject.objects.product;
+import com.example.microservicesproject.services.customerService;
 import com.example.microservicesproject.services.productService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+
 @Service
 public class generalFunctions {
+    @Autowired
+    private customerService customerService;
     Random random = new Random();
     public order dummyOrder(){
+        double randy = Math.random() * (10);
+        int rand = (int) randy;
         List<String> stringList = Arrays.asList(
                 "Sausage",
                 "Milk",
@@ -38,7 +43,8 @@ public class generalFunctions {
             lineProduct.setQuantity(randomProductQuantity);
             order.addProduct(lineProduct);
         }
-
+        order.setCostumer(customerService.getCustomerById(rand));
+        order.setCreatedAt(new Date());
         return order;
     }
     public void createOrUpdate(order order, productService productSQL){
